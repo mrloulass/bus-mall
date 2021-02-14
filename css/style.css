@@ -1,0 +1,29 @@
+body {
+    background-color: rgba(245, 245, 245, 0.466);
+}
+
+h1 {
+    font-family: 'Libre Baskerville', serif;
+    font-size:xx-large;
+    text-align:center;
+    margin-top:25px;
+    margin-bottom: 25px;
+}
+
+h2 {
+    font-family: 'Varela Round', sans-serif;
+    font-size:large;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+section {
+    background-color:rgb(235, 214, 188);
+    width: max-content;
+    margin: auto;
+}
+
+section img {
+    width: 200px;
+    margin: 50px;
+}
