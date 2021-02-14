@@ -46,3 +46,4 @@ A start up company called BusMall wants me to build an app to figure which produ
 
 ### Reflections and Comments
 * I add a indexArray to the renderImage to compare the three images. 
+* i add a event listener `click` to the JS code

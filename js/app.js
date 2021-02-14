@@ -6,14 +6,13 @@ let totalClicks = 0;
 let clicksAllow = 25;
 let allProducts = [];
 
-// trying two ways to add images with an array and without
 let imageOne = document.querySelector('section img:first-child');
 let imageTwo = document.querySelector('section img:nth-child(2)');
 let imageThree = document.querySelector('section img:nth-child(3)');
-// console.log(imageOne, imageTwo, imageThree);
 
-// let images = [document.querySelector('section img:first-child'), document.querySelector('section img:nth-child(2)'), document.querySelector('section img:nth-child(3)')];
-// console.log(images);
+// add a event listener
+let myImageBox = document.querySelector('section');
+
 
 // Build a Constructor
 
@@ -57,8 +56,11 @@ function renderImages() {
   let secondImageIndex = getRandomImages();
   let thirdImageIndex = getRandomImages();
   let indexArry = [firstImageIndex,secondImageIndex,thirdImageIndex];
-  allProducts.shift(indexArry);
-  allProducts.unshift(indexArry);
+  if (indexArry[0] === indexArry[1]){
+    allProducts.shift(indexArry);
+  } else {
+    allProducts.slice(indexArry);
+  }
 
   imageOne.src = allProducts[firstImageIndex].src;
   imageOne.title = allProducts[firstImageIndex].name;
@@ -72,4 +74,17 @@ function renderImages() {
   imageThree.title = allProducts[thirdImageIndex].name;
   allProducts[thirdImageIndex].views++;
 }
+
+function handleClick(event){
+  totalClicks++;
+  let imageClick = event.target.title;
+  console.log(imageClick);
+  renderImages();
+  if (totalClicks === clicksAllow){
+    myImageBox.removeEventListener('click', handleClick);
+  }
+}
+
 renderImages();
+
+myImageBox.addEventListener('click', handleClick);
