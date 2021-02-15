@@ -12,8 +12,7 @@ let imageThree = document.querySelector('section img:nth-child(3)');
 
 // add a event listener
 let myImageBox = document.querySelector('section');
-
-
+let clickResults = document.getElementById('Results');
 // Build a Constructor
 
 function Products(name, fileExtension = 'jpg') {
@@ -55,12 +54,10 @@ function renderImages() {
   let firstImageIndex = getRandomImages();
   let secondImageIndex = getRandomImages();
   let thirdImageIndex = getRandomImages();
-  let indexArry = [firstImageIndex,secondImageIndex,thirdImageIndex];
-  if (indexArry[0] === indexArry[1]){
+  let indexArry = [firstImageIndex, secondImageIndex, thirdImageIndex];
+  if (indexArry[0] === indexArry[1] || indexArry[0] === indexArry[2]) {
     allProducts.shift(indexArry);
-  } else {
-    allProducts.slice(indexArry);
-  }
+  } else allProducts.slice(indexArry);
 
   imageOne.src = allProducts[firstImageIndex].src;
   imageOne.title = allProducts[firstImageIndex].name;
@@ -73,18 +70,42 @@ function renderImages() {
   imageThree.src = allProducts[thirdImageIndex].src;
   imageThree.title = allProducts[thirdImageIndex].name;
   allProducts[thirdImageIndex].views++;
+
 }
 
-function handleClick(event){
+function renderResults() {
+  let displayResults = document.querySelector('ul');
+  for (let i = 0; i < allProducts.length; i++) {
+    let li = document.createElement('li');
+    li.textContent = `${allProducts[i].name} had ${allProducts[i].clicks} votes, and was seen ${allProducts[i].views} times.`;
+    displayResults.appendChild(li);
+  }
+
+}
+
+function handleClick(event) {
   totalClicks++;
   let imageClick = event.target.title;
-  console.log(imageClick);
+
+  for (let i = 0; i < allProducts.length; i++)
+    if (imageClick === allProducts[i].name) {
+      allProducts[i].clicks++;
+    }
+
+  // console.log(imageClick);
   renderImages();
-  if (totalClicks === clicksAllow){
+  if (totalClicks === clicksAllow) {
     myImageBox.removeEventListener('click', handleClick);
+  }
+}
+
+function handleButton(event) {
+  if (totalClicks === clicksAllow) {
+    renderResults();
   }
 }
 
 renderImages();
 
 myImageBox.addEventListener('click', handleClick);
+clickResults.addEventListener('click', handleButton);
