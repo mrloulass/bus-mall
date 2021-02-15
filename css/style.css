@@ -21,9 +21,37 @@ section {
     background-color:rgb(235, 214, 188);
     width: max-content;
     margin: auto;
+    margin-bottom: 25px;
 }
 
 section img {
     width: 200px;
     margin: 50px;
+}
+
+section img:hover{
+    cursor: pointer;
+}
+
+#Results {
+    background-color: rgb(149, 113, 113);
+    padding: 5px;
+    width: max-content;
+    margin: auto;
+    text-align: center;
+    border-radius: 25px;
+    color: white;
+}
+
+#Results:hover {
+    cursor:pointer ;
+}
+ul {
+    background-color:rgb(235, 214, 188);
+    width: max-content;
+    margin: auto;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    padding:10px;
+
 }
