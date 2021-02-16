@@ -2,10 +2,10 @@
 
 // add global variables
 let totalClicks = 0;
-// up to 25 clicks change after code is done
 let clicksAllow = 25;
 let allProducts = [];
-
+let imageArray = [];
+let numberOfImages = 3;
 let imageOne = document.querySelector('section img:first-child');
 let imageTwo = document.querySelector('section img:nth-child(2)');
 let imageThree = document.querySelector('section img:nth-child(3)');
@@ -51,13 +51,16 @@ function getRandomImages() {
 }
 
 function renderImages() {
-  let firstImageIndex = getRandomImages();
-  let secondImageIndex = getRandomImages();
-  let thirdImageIndex = getRandomImages();
-  let indexArry = [firstImageIndex, secondImageIndex, thirdImageIndex];
-  if (indexArry[0] === indexArry[1] || indexArry[0] === indexArry[2]) {
-    allProducts.shift(indexArry);
-  } else allProducts.slice(indexArry);
+  while (imageArray.length < numberOfImages) {
+    let randomImages = getRandomImages();
+    while (!imageArray.includes(randomImages)) {
+      imageArray.push(randomImages);
+    }
+  }
+  let firstImageIndex = imageArray.pop();
+  let secondImageIndex = imageArray.pop();
+  let thirdImageIndex = imageArray.pop();
+
 
   imageOne.src = allProducts[firstImageIndex].src;
   imageOne.title = allProducts[firstImageIndex].name;
@@ -99,7 +102,7 @@ function handleClick(event) {
   }
 }
 
-function handleButton(event) {
+function handleButton(event) { //eslint-disable-line
   if (totalClicks === clicksAllow) {
     renderResults();
   }
