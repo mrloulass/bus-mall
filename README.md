@@ -48,3 +48,19 @@ A start up company called BusMall wants me to build an app to figure which produ
 * I add a indexArray to the renderImage to compare the three images. 
 * I add a two event listener `click` to the JS code
 * I add view results after clicks
+
+
+# LAB - 012
+
+## Chart.js
+I added a chart to my busmall lab with a CDN and added `<canvas>` to HTML.
+
+### Author: Louis Lassegue
+
+### Links and Resources
+* [add a CDN](https://www.jsdelivr.com/package/npm/chart.js)
+* [![](https://data.jsdelivr.com/v1/package/npm/chart.js/badge)](https://www.jsdelivr.com/package/npm/chart.js)
+* [Creating a Chart](https://www.chartjs.org/docs/latest/)
+
+### Reflections and Comments
+* 
