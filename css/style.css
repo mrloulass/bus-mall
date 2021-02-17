@@ -1,5 +1,5 @@
 body {
-    background-color: rgba(245, 245, 245, 0.466);
+    background-color: rgba(226, 219, 201, 0.472);
 }
 
 h1 {
@@ -18,7 +18,7 @@ h2 {
 }
 
 #images {
-    background-color:rgb(235, 214, 188);
+    background-color:rgba(236, 209, 175, 0.883);
     width: max-content;
     margin: auto;
     margin-bottom: 25px;
