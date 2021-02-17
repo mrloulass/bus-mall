@@ -10,6 +10,7 @@ let imageOne = document.querySelector('section img:first-child');
 let imageTwo = document.querySelector('section img:nth-child(2)');
 let imageThree = document.querySelector('section img:nth-child(3)');
 
+
 // add a event listener
 let myImageBox = document.querySelector('section');
 
@@ -88,71 +89,55 @@ function handleClick(event) {
   renderImages();
   if (totalClicks === clicksAllow) {
     myImageBox.removeEventListener('click', handleClick);
+    renderChart();
   }
 }
 
 renderImages();
 
-let chartObject = {
-  type: 'bar',
-  data: {
-    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-    datasets: [{
-      label: '# of Votes',
-      data: [12, 19, 3, 5, 2, 3],
-      backgroundColor: [
-        'rgba(255, 99, 132, 0.2)',
-        'rgba(54, 162, 235, 0.2)',
-        'rgba(255, 206, 86, 0.2)',
-        'rgba(75, 192, 192, 0.2)',
-        'rgba(153, 102, 255, 0.2)',
-        'rgba(255, 159, 64, 0.2)'
-      ],
-      borderColor: [
-        'rgba(255, 99, 132, 1)',
-        'rgba(54, 162, 235, 1)',
-        'rgba(255, 206, 86, 1)',
-        'rgba(75, 192, 192, 1)',
-        'rgba(153, 102, 255, 1)',
-        'rgba(255, 159, 64, 1)'
-      ],
-      borderWidth: 1
-    },
-    {
-      label: '# of Votes',
-      data: [12, 19, 3, 5, 2, 3],
-      backgroundColor: [
-        'rgba(255, 99, 132, 0.2)',
-        'rgba(54, 162, 235, 0.2)',
-        'rgba(255, 206, 86, 0.2)',
-        'rgba(75, 192, 192, 0.2)',
-        'rgba(153, 102, 255, 0.2)',
-        'rgba(255, 159, 64, 0.2)'
-      ],
-      borderColor: [
-        'rgba(255, 99, 132, 1)',
-        'rgba(54, 162, 235, 1)',
-        'rgba(255, 206, 86, 1)',
-        'rgba(75, 192, 192, 1)',
-        'rgba(153, 102, 255, 1)',
-        'rgba(255, 159, 64, 1)'
-      ],
-      borderWidth: 1
-    }
-    ]
-  },
-  options: {
-    scales: {
-      yAxes: [{
-        ticks: {
-          beginAtZero: true
-        }
-      }]
-    }
+function renderChart() {
+  let productName = [];
+  let productViews = [];
+  let productClicks = [];
+
+  for (let i = 0; i < allProducts.length; i++) {
+    productName.push(allProducts[i].name);
+    productViews.push(allProducts[i].views);
+    productClicks.push(allProducts[i].clicks);
   }
-};
 
-let ctx = document.getElementById('myChart').getContext('2d');
-let myChart = new Chart(ctx, chartObject);
+  let chartObject = {
+    type: 'bar',
+    data: {
+      labels: productName,
+      datasets: [{
+        label: 'Views',
+        data: productViews,
+        backgroundColor: 'rgba(255, 206, 86, 0.4)',
+        borderColor: 'rgba(255, 206, 86, 1.5)',
+        borderWidth: 1.5
+      },
+      {
+        label: 'Clicks',
+        data: productClicks,
+        backgroundColor: 'rgba(255, 159, 64, 0.4)',
+        borderColor: 'rgba(255, 159, 64, 1.5)',
+        borderWidth: 1.5
+      }
+      ]
+    },
+    options: {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
+          }
+        }]
+      }
+    }
+  };
 
+  let ctx = document.getElementById('myChart').getContext('2d');
+  let myChart = new Chart(ctx, chartObject);
+}
 myImageBox.addEventListener('click', handleClick);
