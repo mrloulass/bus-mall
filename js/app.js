@@ -5,14 +5,14 @@ let totalClicks = 0;
 let clicksAllow = 25;
 let allProducts = [];
 let imageArray = [];
-let numberOfImages = 3;
+let numberOfImages = 6;
 let imageOne = document.querySelector('section img:first-child');
 let imageTwo = document.querySelector('section img:nth-child(2)');
 let imageThree = document.querySelector('section img:nth-child(3)');
 
 // add a event listener
 let myImageBox = document.querySelector('section');
-let clickResults = document.getElementById('Results');
+
 // Build a Constructor
 
 function Products(name, fileExtension = 'jpg') {
@@ -54,7 +54,7 @@ function renderImages() {
   while (imageArray.length < numberOfImages) {
     let randomImages = getRandomImages();
     while (!imageArray.includes(randomImages)) {
-      imageArray.push(randomImages);
+      imageArray.unshift(randomImages);
     }
   }
   let firstImageIndex = imageArray.pop();
@@ -76,16 +76,6 @@ function renderImages() {
 
 }
 
-function renderResults() {
-  let displayResults = document.querySelector('ul');
-  for (let i = 0; i < allProducts.length; i++) {
-    let li = document.createElement('li');
-    li.textContent = `${allProducts[i].name} had ${allProducts[i].clicks} votes, and was seen ${allProducts[i].views} times.`;
-    displayResults.appendChild(li);
-  }
-
-}
-
 function handleClick(event) {
   totalClicks++;
   let imageClick = event.target.title;
@@ -95,20 +85,74 @@ function handleClick(event) {
       allProducts[i].clicks++;
     }
 
-  // console.log(imageClick);
   renderImages();
   if (totalClicks === clicksAllow) {
     myImageBox.removeEventListener('click', handleClick);
   }
 }
 
-function handleButton(event) { //eslint-disable-line
-  if (totalClicks === clicksAllow) {
-    renderResults();
-  }
-}
-
 renderImages();
 
+let chartObject = {
+  type: 'bar',
+  data: {
+    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+    datasets: [{
+      label: '# of Votes',
+      data: [12, 19, 3, 5, 2, 3],
+      backgroundColor: [
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(54, 162, 235, 0.2)',
+        'rgba(255, 206, 86, 0.2)',
+        'rgba(75, 192, 192, 0.2)',
+        'rgba(153, 102, 255, 0.2)',
+        'rgba(255, 159, 64, 0.2)'
+      ],
+      borderColor: [
+        'rgba(255, 99, 132, 1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(255, 206, 86, 1)',
+        'rgba(75, 192, 192, 1)',
+        'rgba(153, 102, 255, 1)',
+        'rgba(255, 159, 64, 1)'
+      ],
+      borderWidth: 1
+    },
+    {
+      label: '# of Votes',
+      data: [12, 19, 3, 5, 2, 3],
+      backgroundColor: [
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(54, 162, 235, 0.2)',
+        'rgba(255, 206, 86, 0.2)',
+        'rgba(75, 192, 192, 0.2)',
+        'rgba(153, 102, 255, 0.2)',
+        'rgba(255, 159, 64, 0.2)'
+      ],
+      borderColor: [
+        'rgba(255, 99, 132, 1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(255, 206, 86, 1)',
+        'rgba(75, 192, 192, 1)',
+        'rgba(153, 102, 255, 1)',
+        'rgba(255, 159, 64, 1)'
+      ],
+      borderWidth: 1
+    }
+    ]
+  },
+  options: {
+    scales: {
+      yAxes: [{
+        ticks: {
+          beginAtZero: true
+        }
+      }]
+    }
+  }
+};
+
+let ctx = document.getElementById('myChart').getContext('2d');
+let myChart = new Chart(ctx, chartObject);
+
 myImageBox.addEventListener('click', handleClick);
-clickResults.addEventListener('click', handleButton);
