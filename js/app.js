@@ -113,14 +113,14 @@ function renderChart() {
       datasets: [{
         label: 'Views',
         data: productViews,
-        backgroundColor: 'rgba(255, 206, 86, 0.4)',
-        borderColor: 'rgba(255, 206, 86, 1.5)',
-        borderWidth: 1.5
+        backgroundColor: 'rgba(255, 206, 86, 0.5)',
+        borderColor: 'rgba(255, 206, 86, 2)',
+        borderWidth: 2
       },
       {
         label: 'Clicks',
         data: productClicks,
-        backgroundColor: 'rgba(255, 159, 64, 0.4)',
+        backgroundColor: 'rgba(255, 159, 64, 0.5)',
         borderColor: 'rgba(255, 159, 64, 1.5)',
         borderWidth: 1.5
       }
