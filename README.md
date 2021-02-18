@@ -63,4 +63,4 @@ I added a chart to my busmall lab with a CDN and added `<canvas>` to HTML.
 * [Creating a Chart](https://www.chartjs.org/docs/latest/)
 
 ### Reflections and Comments
-* 
+* The CDN was a great way to add a chart without typing all the line of code. The chartjs docs was a big help when trying to understanding the different parts of a chart and how to build one. 
