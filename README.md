@@ -14,7 +14,7 @@ A start up company called BusMall wants me to build an app to figure which produ
 
 - a custom font, color palette, layout with semantic HTML
 
-### What Do We Need?
+*What Do We Need?*
 
 - Global Variables
     * global click counter
@@ -64,3 +64,26 @@ I added a chart to my busmall lab with a CDN and added `<canvas>` to HTML.
 
 ### Reflections and Comments
 * The CDN was a great way to add a chart without typing all the line of code. The chartjs docs was a big help when trying to understanding the different parts of a chart and how to build one. 
+
+# LAB - 013
+
+## Add Local Storage to Bus Mall
+* Saving to Local Storage
+    1. stringify the data
+    2. Save to Local Storage
+* Retrieving From Local Storage 
+    1. .getItem() - get the data from Local Storage using its key
+    2. JSON.parse() - make that data useable again by parsing the data
+    3. make sure your local storage works and does not break your code
+
+### Author: Louis Lassegue
+
+### Links and Resources
+* [Storing and retrieving objects with localStorage [HTML5]](https://coderwall.com/p/ewxn9g/storing-and-retrieving-objects-with-localstorage-html5)
+* [Introducing JSON](https://www.json.org/json-en.html)
+* [Chrome DevTools](https://developers.google.com/web/tools/chrome-devtools/storage/localstorage?utm_source=devtools)
+
+### Reflections and Comments
+* When adding the local stroage place it after the render results in the function to capture the data.
+* Place the retrieving code before you instantiate the oject. Use a **if** and **else** to make sure your data name and images are not repeated just the click and views are add to the previous data and saved. 
+* This process answer my question about how to collect data from multiple vistiors using the site.
